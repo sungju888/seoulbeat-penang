@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEOULBEAT — K-Pop Dance Studio Penang</title>
+<meta name="description" content="Penang's hottest K-Pop dance studio. Learn idol choreography, train with pro dancers, join the crew. Free trial class — DM us on WhatsApp!">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Space+Grotesk:wght@400;500;700&family=Noto+Sans+KR:wght@500;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0f;
+    --bg2:#101018;
+    --ink:#f4f4f6;
+    --muted:#9b9ba8;
+    --pink:#ff2d78;
+    --violet:#8b3dff;
+    --cyan:#2de2ff;
+    --lime:#c8f82a;
+    --grad:linear-gradient(90deg,var(--pink),var(--violet) 55%,var(--cyan));
+    --radius:22px;
+    --font-display:'Unbounded',sans-serif;
+    --font-body:'Space Grotesk',sans-serif;
+    --font-kr:'Noto Sans KR',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--pink);color:#fff}
+
+  /* ───────── grain + glow backdrop ───────── */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.06'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .blob{position:absolute;border-radius:50%;filter:blur(110px);opacity:.35;pointer-events:none}
+
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  section{position:relative;padding:110px 24px}
+  .wrap{max-width:1200px;margin:0 auto;position:relative;z-index:2}
+
+  h1,h2,h3{font-family:var(--font-display);line-height:1.05}
+  .kr{font-family:var(--font-kr);font-weight:900}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--cyan);
+    margin-bottom:22px;font-weight:700;
+  }
+  .eyebrow::before{content:"";width:34px;height:2px;background:var(--grad)}
+
+  .section-title{font-size:clamp(34px,5.4vw,62px);font-weight:900;text-transform:uppercase;margin-bottom:18px}
+  .section-title .stroke{
+    color:transparent;-webkit-text-stroke:1.5px var(--ink);
+  }
+  .section-sub{color:var(--muted);font-size:17px;max-width:560px;line-height:1.7}
+
+  /* ───────── buttons ───────── */
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--font-display);font-weight:600;font-size:14px;
+    padding:17px 30px;border-radius:999px;cursor:pointer;border:none;
+    transition:transform .25s cubic-bezier(.2,.9,.3,1.4),box-shadow .25s;
+    position:relative;z-index:2;
+  }
+  .btn:active{transform:scale(.96)}
+  .btn-wa{
+    background:var(--grad);color:#fff;
+    box-shadow:0 8px 32px rgba(255,45,120,.35);
+  }
+  .btn-wa:hover{transform:translateY(-3px);box-shadow:0 14px 44px rgba(139,61,255,.5)}
+  .btn-ghost{
+    background:transparent;color:var(--ink);
+    border:1.5px solid rgba(255,255,255,.25);
+  }
+  .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-3px)}
+  .wa-ic{width:19px;height:19px;flex:none}
+
+  /* ───────── nav ───────── */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    background:rgba(10,10,15,.65);
+    border-bottom:1px solid rgba(255,255,255,.07);
+  }
+  .nav-inner{
+    max-width:1200px;margin:0 auto;padding:16px 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+  }
+  .logo{font-family:var(--font-display);font-weight:900;font-size:19px;letter-spacing:.02em;display:flex;align-items:center;gap:9px}
+  .logo .dot{width:9px;height:9px;border-radius:50%;background:var(--grad);box-shadow:0 0 14px var(--pink)}
+  .logo em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .nav-links{display:flex;gap:30px;font-size:14px;font-weight:500;color:var(--muted)}
+  .nav-links a{transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{padding:11px 20px;font-size:12px}
+  @media(max-width:840px){.nav-links{display:none}}
+
+  /* ───────── hero ───────── */
+  .hero{
+    min-height:100svh;display:flex;align-items:center;
+    padding:140px 24px 60px;overflow:hidden;
+  }
+  .hero .blob.b1{width:520px;height:520px;background:var(--violet);top:-120px;right:-100px}
+  .hero .blob.b2{width:420px;height:420px;background:var(--pink);bottom:-80px;left:-140px;opacity:.28}
+  .hero .blob.b3{width:300px;height:300px;background:var(--cyan);top:40%;left:55%;opacity:.18}
+
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:10px;
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    padding:9px 18px;border-radius:999px;font-size:13px;font-weight:500;
+    margin-bottom:30px;
+  }
+  .hero-badge .pulse{
+    width:8px;height:8px;border-radius:50%;background:var(--lime);
+    animation:pulse 1.6s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(200,248,42,.6)}
+    70%{box-shadow:0 0 0 10px rgba(200,248,42,0)}
+    100%{box-shadow:0 0 0 0 rgba(200,248,42,0)}
+  }
+  .hero h1{
+    font-size:clamp(46px,9.4vw,118px);font-weight:900;
+    text-transform:uppercase;letter-spacing:-.01em;
+  }
+  .hero h1 .line{display:block}
+  .hero h1 .ghost{color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.85)}
+  .hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero h1 .tilt{display:inline-block;transform:rotate(-2deg)}
+  .hero-kr{
+    font-family:var(--font-kr);font-weight:900;
+    font-size:clamp(15px,2vw,21px);color:var(--cyan);
+    letter-spacing:.5em;margin:24px 0 14px;text-transform:none;
+  }
+  .hero-sub{color:var(--muted);font-size:18px;max-width:520px;line-height:1.75;margin-bottom:42px}
+  .hero-sub b{color:var(--ink)}
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .hero-stats{display:flex;gap:46px;margin-top:64px;flex-wrap:wrap}
+  .hstat .num{font-family:var(--font-display);font-weight:800;font-size:30px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hstat .lbl{font-size:13px;color:var(--muted);margin-top:5px;letter-spacing:.08em;text-transform:uppercase}
+
+  /* ───────── marquee ───────── */
+  .marquee{
+    background:var(--grad);transform:rotate(-1.6deg) scale(1.04);
+    padding:16px 0;overflow:hidden;white-space:nowrap;position:relative;z-index:3;
+  }
+  .marquee-track{display:inline-block;animation:scroll 22s linear infinite}
+  .marquee span{
+    font-family:var(--font-display);font-weight:800;font-size:17px;color:#0a0a0f;
+    text-transform:uppercase;letter-spacing:.1em;margin:0 28px;
+  }
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ───────── classes ───────── */
+  .grid-classes{display:grid;grid-template-columns:repeat(auto-fit,minmax(265px,1fr));gap:22px;margin-top:58px}
+  .class-card{
+    background:var(--bg2);border:1px solid rgba(255,255,255,.08);
+    border-radius:var(--radius);padding:36px 30px;position:relative;overflow:hidden;
+    transition:transform .35s cubic-bezier(.2,.9,.3,1.2),border-color .35s;
+  }
+  .class-card:hover{transform:translateY(-10px) rotate(-.6deg);border-color:transparent}
+  .class-card::before{
+    content:"";position:absolute;inset:0;border-radius:var(--radius);padding:1.5px;
+    background:var(--grad);opacity:0;transition:opacity .35s;
+    -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;
+  }
+  .class-card:hover::before{opacity:1}
+  .class-emoji{font-size:38px;margin-bottom:20px}
+  .class-card h3{font-size:19px;font-weight:800;text-transform:uppercase;margin-bottom:6px}
+  .class-kr{font-family:var(--font-kr);font-weight:900;font-size:13px;color:var(--pink);letter-spacing:.2em;margin-bottom:16px}
+  .class-card p{color:var(--muted);font-size:15px;line-height:1.7;margin-bottom:22px}
+  .class-tags{display:flex;gap:8px;flex-wrap:wrap}
+  .tag{
+    font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    padding:6px 13px;border-radius:999px;
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:var(--muted);
+  }
+  .tag.hot{background:rgba(255,45,120,.15);border-color:rgba(255,45,120,.4);color:var(--pink)}
+
+  /* ───────── schedule ───────── */
+  .sched{background:var(--bg2)}
+  .sched .blob.b1{width:400px;height:400px;background:var(--violet);top:-100px;left:-150px;opacity:.22}
+  .sched-table{margin-top:54px;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,.09)}
+  .sched-row{
+    display:grid;grid-template-columns:1.1fr 1.6fr 1.4fr 1fr;gap:12px;align-items:center;
+    padding:21px 28px;border-bottom:1px solid rgba(255,255,255,.07);
+    background:rgba(255,255,255,.02);transition:background .25s;font-size:15px;
+  }
+  .sched-row:last-child{border-bottom:none}
+  .sched-row:hover{background:rgba(139,61,255,.1)}
+  .sched-row.head{
+    background:rgba(255,255,255,.05);font-family:var(--font-display);
+    font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600;
+  }
+  .sched-day{font-family:var(--font-display);font-weight:700;font-size:14px}
+  .sched-class{font-weight:700}
+  .sched-class small{display:block;font-weight:400;color:var(--muted);margin-top:3px;font-size:12.5px}
+  .sched-time{color:var(--cyan);font-weight:500}
+  .lvl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px;text-align:center;max-width:110px}
+  .lvl.open{background:rgba(200,248,42,.13);color:var(--lime);border:1px solid rgba(200,248,42,.35)}
+  .lvl.beg{background:rgba(45,226,255,.12);color:var(--cyan);border:1px solid rgba(45,226,255,.3)}
+  .lvl.adv{background:rgba(255,45,120,.13);color:var(--pink);border:1px solid rgba(255,45,120,.35)}
+  @media(max-width:720px){
+    .sched-row{grid-template-columns:1fr 1.6fr;row-gap:8px;padding:18px 20px}
+    .sched-row.head{display:none}
+    .lvl{justify-self:start}
+  }
+
+  /* ───────── pricing ───────── */
+  .grid-price{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:58px;align-items:stretch}
+  .price-card{
+    background:var(--bg2);border:1px solid rgba(255,255,255,.09);border-radius:var(--radius);
+    padding:42px 34px;display:flex;flex-direction:column;position:relative;overflow:hidden;
+    transition:transform .3s;
+  }
+  .price-card:hover{transform:translateY(-8px)}
+  .price-card.featured{
+    background:linear-gradient(160deg,rgba(255,45,120,.16),rgba(139,61,255,.16) 50%,rgba(45,226,255,.12));
+    border:1.5px solid var(--violet);box-shadow:0 20px 60px rgba(139,61,255,.25);
+  }
+  .price-flag{
+    position:absolute;top:20px;right:-38px;transform:rotate(38deg);
+    background:var(--grad);color:#fff;font-family:var(--font-display);
+    font-size:10px;font-weight:800;letter-spacing:.14em;padding:7px 44px;text-transform:uppercase;
+  }
+  .price-card h3{font-size:17px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:20px}
+  .price-amt{font-family:var(--font-display);font-weight:900;font-size:46px;margin-bottom:4px}
+  .price-amt small{font-size:16px;font-weight:600;color:var(--muted)}
+  .price-per{color:var(--muted);font-size:13.5px;margin-bottom:28px}
+  .price-feats{list-style:none;margin-bottom:34px;flex:1}
+  .price-feats li{
+    padding:9px 0;color:var(--muted);font-size:14.5px;display:flex;gap:11px;align-items:baseline;
+  }
+  .price-feats li::before{content:"✦";color:var(--pink);font-size:12px}
+  .price-card .btn{justify-content:center}
+
+  /* ───────── crew / instructors ───────── */
+  .crew{background:var(--bg2)}
+  .crew .blob.b1{width:380px;height:380px;background:var(--pink);bottom:-120px;right:-100px;opacity:.18}
+  .grid-crew{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-top:58px}
+  .crew-card{
+    border-radius:var(--radius);overflow:hidden;position:relative;
+    border:1px solid rgba(255,255,255,.08);background:var(--bg);
+    transition:transform .3s;
+  }
+  .crew-card:hover{transform:translateY(-8px) rotate(.6deg)}
+  .crew-photo{
+    aspect-ratio:4/4.6;display:flex;align-items:center;justify-content:center;
+    font-size:78px;position:relative;
+  }
+  .crew-photo.p1{background:linear-gradient(160deg,#ff2d78 0%,#8b3dff 100%)}
+  .crew-photo.p2{background:linear-gradient(160deg,#8b3dff 0%,#2de2ff 100%)}
+  .crew-photo.p3{background:linear-gradient(160deg,#2de2ff 0%,#c8f82a 100%)}
+  .crew-photo.p4{background:linear-gradient(160deg,#ff7a2d 0%,#ff2d78 100%)}
+  .crew-photo::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.25),transparent 60%);
+  }
+  .crew-info{padding:24px 24px 28px}
+  .crew-info h3{font-size:17px;font-weight:800;text-transform:uppercase}
+  .crew-role{font-size:12.5px;color:var(--cyan);letter-spacing:.14em;text-transform:uppercase;margin:7px 0 12px;font-weight:700}
+  .crew-info p{color:var(--muted);font-size:14px;line-height:1.65}
+
+  /* ───────── vibe strip ───────── */
+  .vibe{padding:0}
+  .vibe-inner{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .vibe-cell{
+    padding:54px 30px;text-align:center;border-right:1px solid rgba(255,255,255,.08);
+  }
+  .vibe-cell:last-child{border-right:none}
+  .vibe-cell .big{font-family:var(--font-display);font-weight:900;font-size:38px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .vibe-cell .sm{color:var(--muted);font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-top:10px}
+  @media(max-width:720px){.vibe-cell{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);padding:36px 20px}}
+
+  /* ───────── location ───────── */
+  .loc-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;margin-top:58px;align-items:center}
+  @media(max-width:880px){.loc-grid{grid-template-columns:1fr}}
+  .loc-card{
+    background:var(--bg2);border:1px solid rgba(255,255,255,.09);border-radius:var(--radius);
+    padding:42px;
+  }
+  .loc-item{display:flex;gap:18px;padding:17px 0;border-bottom:1px solid rgba(255,255,255,.07);align-items:flex-start}
+  .loc-item:last-child{border-bottom:none}
+  .loc-ic{font-size:22px;flex:none;margin-top:2px}
+  .loc-item h4{font-family:var(--font-display);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;font-weight:600}
+  .loc-item p{font-size:15.5px;line-height:1.6}
+  .loc-map{
+    border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,.1);
+    aspect-ratio:4/3.4;position:relative;
+    background:
+      radial-gradient(circle at 62% 38%,rgba(255,45,120,.5),transparent 26%),
+      repeating-linear-gradient(0deg,transparent 0 38px,rgba(255,255,255,.06) 38px 39px),
+      repeating-linear-gradient(90deg,transparent 0 38px,rgba(255,255,255,.06) 38px 39px),
+      linear-gradient(150deg,#14141f, #0d0d14);
+    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;
+  }
+  .loc-pin{font-size:50px;filter:drop-shadow(0 0 18px rgba(255,45,120,.8));animation:bounce 2s infinite}
+  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  .loc-map .lbl{font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+
+  /* ───────── final CTA ───────── */
+  .final{
+    text-align:center;overflow:hidden;
+  }
+  .final .blob.b1{width:560px;height:560px;background:var(--violet);top:-150px;left:50%;transform:translateX(-50%);opacity:.3}
+  .final h2{font-size:clamp(38px,7vw,84px);font-weight:900;text-transform:uppercase;margin-bottom:8px}
+  .final h2 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .final .kr-line{font-family:var(--font-kr);font-weight:900;color:var(--cyan);letter-spacing:.4em;font-size:15px;margin-bottom:26px}
+  .final p{color:var(--muted);font-size:17px;max-width:480px;margin:0 auto 46px;line-height:1.75}
+  .final .btn-wa{font-size:16px;padding:21px 42px}
+  .final .hint{margin-top:22px;font-size:13.5px;color:var(--muted)}
+
+  /* ───────── footer ───────── */
+  footer{border-top:1px solid rgba(255,255,255,.08);padding:46px 24px;position:relative;z-index:2}
+  .foot-inner{
+    max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;
+    align-items:center;gap:24px;flex-wrap:wrap;color:var(--muted);font-size:13.5px;
+  }
+  .foot-social{display:flex;gap:22px;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+  .foot-social a:hover{color:var(--pink)}
+
+  /* ───────── floating WA ───────── */
+  .wa-float{
+    position:fixed;right:24px;bottom:24px;z-index:60;
+    width:62px;height:62px;border-radius:50%;
+    background:#25D366;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 34px rgba(37,211,102,.45);
+    transition:transform .25s;
+  }
+  .wa-float:hover{transform:scale(1.12) rotate(8deg)}
+  .wa-float::before{
+    content:"";position:absolute;inset:-5px;border-radius:50%;
+    border:2px solid rgba(37,211,102,.55);animation:ring 2s infinite;
+  }
+  @keyframes ring{0%{transform:scale(.9);opacity:1}100%{transform:scale(1.5);opacity:0}}
+  .wa-float svg{width:32px;height:32px}
+  .wa-tip{
+    position:fixed;right:98px;bottom:38px;z-index:60;
+    background:#fff;color:#111;font-size:13px;font-weight:700;
+    padding:9px 16px;border-radius:12px;border-bottom-right-radius:3px;
+    box-shadow:0 8px 26px rgba(0,0,0,.35);white-space:nowrap;
+    animation:tipfloat 3s ease-in-out infinite;
+  }
+  @keyframes tipfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+  @media(max-width:600px){.wa-tip{display:none}}
+
+  /* ───────── reveal anim ───────── */
+  .reveal{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .marquee-track{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════ NAV ════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="logo"><span class="dot"></span>SEOUL<em>BEAT</em></a>
+    <div class="nav-links">
+      <a href="#classes">Classes</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#crew">Crew</a>
+      <a href="#visit">Visit Us</a>
+    </div>
+    <a class="btn btn-wa nav-cta" data-wa="Hi SEOULBEAT! I'd like to book a FREE trial class 💃">
+      <svg class="wa-ic" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.1 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35M12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.82 9.82 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 7 2.9 9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.88-9.9 9.88m8.42-18.29A11.8 11.8 0 0 0 12.04 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.94L.06 24l6.32-1.65a11.9 11.9 0 0 0 5.67 1.44h.01c6.55 0 11.88-5.33 11.88-11.89 0-3.18-1.24-6.16-3.47-8.4"/></svg>
+      Free Trial
+    </a>
+  </div>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<header class="hero" id="top">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="wrap">
+    <div class="hero-badge"><span class="pulse"></span>Now enrolling — Penang, Malaysia 🇲🇾</div>
+    <h1>
+      <span class="line ghost">Dance like</span>
+      <span class="line grad tilt">your bias</span>
+      <span class="line">is watching.</span>
+    </h1>
+    <div class="hero-kr">케이팝 · 댄스 · 스튜디오</div>
+    <p class="hero-sub">
+      Penang's first studio dedicated to <b>K-Pop choreography</b>.
+      Learn full point-choreo from the latest comebacks, taught by pro dancers —
+      from total beginner to cover-crew level.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn btn-wa" data-wa="Hi SEOULBEAT! I'd like to book a FREE trial class 💃">
+        <svg class="wa-ic" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.1 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35M12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.82 9.82 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 7 2.9 9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.88-9.9 9.88m8.42-18.29A11.8 11.8 0 0 0 12.04 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.94L.06 24l6.32-1.65a11.9 11.9 0 0 0 5.67 1.44h.01c6.55 0 11.88-5.33 11.88-11.89 0-3.18-1.24-6.16-3.47-8.4"/></svg>
+        Book Free Trial on WhatsApp
+      </a>
+      <a class="btn btn-ghost" href="#classes">Explore Classes ↓</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="num">10+</div><div class="lbl">Weekly Classes</div></div>
+      <div class="hstat"><div class="num">4</div><div class="lbl">Pro Instructors</div></div>
+      <div class="hstat"><div class="num">100%</div><div class="lbl">Good Vibes</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ════════ MARQUEE ════════ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>K-Pop Choreo</span><span>✦</span><span>힙합</span><span>✦</span><span>Girl Group</span><span>✦</span><span>Boy Group</span><span>✦</span><span>Cover Crew</span><span>✦</span><span>Kids K-Pop</span><span>✦</span><span>댄스</span><span>✦</span><span>Random Play Dance</span><span>✦</span>
+  </div>
+</div>
+
+<!-- ════════ CLASSES ════════ -->
+<section id="classes">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Our Classes · 클래스</div>
+      <h2 class="section-title">Pick your <span class="stroke">era.</span></h2>
+      <p class="section-sub">Whether it's your first 8-count or your fiftieth cover, there's a class with your name on it.</p>
+    </div>
+    <div class="grid-classes">
+      <div class="class-card reveal">
+        <div class="class-emoji">🔥</div>
+        <h3>K-Pop Choreo</h3>
+        <div class="class-kr">케이팝 안무</div>
+        <p>Full point-choreography from the latest comebacks — NewJeans, aespa, Stray Kids, SEVENTEEN &amp; more. New song every 2 weeks.</p>
+        <div class="class-tags"><span class="tag hot">Most Popular</span><span class="tag">All Levels</span></div>
+      </div>
+      <div class="class-card reveal">
+        <div class="class-emoji">🐣</div>
+        <h3>K-Pop Beginners</h3>
+        <div class="class-kr">왕초보 환영</div>
+        <p>Never danced before? Perfect. We break every move down slow, build your groove, and get you performing in weeks.</p>
+        <div class="class-tags"><span class="tag">Zero Experience</span><span class="tag">Chill Pace</span></div>
+      </div>
+      <div class="class-card reveal">
+        <div class="class-emoji">🧒</div>
+        <h3>Kids K-Pop</h3>
+        <div class="class-kr">키즈 클래스</div>
+        <p>Ages 7–12. High-energy classes that build confidence, coordination and stage presence — with showcase days for parents.</p>
+        <div class="class-tags"><span class="tag">Ages 7–12</span><span class="tag">Weekends</span></div>
+      </div>
+      <div class="class-card reveal">
+        <div class="class-emoji">👑</div>
+        <h3>Cover Crew</h3>
+        <div class="class-kr">커버 크루</div>
+        <p>Audition-based crew training: full songs, formations, filming days and live showcases around Penang. Go full idol mode.</p>
+        <div class="class-tags"><span class="tag hot">Audition</span><span class="tag">Advanced</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SCHEDULE ════════ -->
+<section class="sched" id="schedule">
+  <div class="blob b1"></div>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Weekly Schedule · 시간표</div>
+      <h2 class="section-title">When we <span class="stroke">move.</span></h2>
+      <p class="section-sub">Evening and weekend slots so school and work never get in the way of the choreo.</p>
+    </div>
+    <div class="sched-table reveal">
+      <div class="sched-row head"><div>Day</div><div>Class</div><div>Time</div><div>Level</div></div>
+      <div class="sched-row"><div class="sched-day">MON</div><div class="sched-class">K-Pop Beginners<small>Girl group focus</small></div><div class="sched-time">8:00 – 9:15 PM</div><div class="lvl beg">Beginner</div></div>
+      <div class="sched-row"><div class="sched-day">TUE</div><div class="sched-class">K-Pop Choreo<small>Latest comebacks</small></div><div class="sched-time">8:00 – 9:30 PM</div><div class="lvl open">All Levels</div></div>
+      <div class="sched-row"><div class="sched-day">WED</div><div class="sched-class">Hip-Hop Foundations<small>Groove &amp; basics</small></div><div class="sched-time">8:00 – 9:15 PM</div><div class="lvl open">All Levels</div></div>
+      <div class="sched-row"><div class="sched-day">THU</div><div class="sched-class">K-Pop Choreo<small>Boy group focus</small></div><div class="sched-time">8:00 – 9:30 PM</div><div class="lvl open">All Levels</div></div>
+      <div class="sched-row"><div class="sched-day">FRI</div><div class="sched-class">Cover Crew Training<small>Audition members</small></div><div class="sched-time">8:00 – 10:00 PM</div><div class="lvl adv">Advanced</div></div>
+      <div class="sched-row"><div class="sched-day">SAT</div><div class="sched-class">Kids K-Pop<small>Ages 7–12</small></div><div class="sched-time">10:30 – 11:45 AM</div><div class="lvl beg">Kids</div></div>
+      <div class="sched-row"><div class="sched-day">SAT</div><div class="sched-class">Random Play Dance + Open Studio<small>Free for members</small></div><div class="sched-time">5:00 – 7:00 PM</div><div class="lvl open">Everyone</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ VIBE STRIP ════════ -->
+<div class="vibe">
+  <div class="vibe-inner">
+    <div class="vibe-cell reveal"><div class="big">2주</div><div class="sm">New choreo every 2 weeks</div></div>
+    <div class="vibe-cell reveal"><div class="big">RM35</div><div class="sm">Drop-in from</div></div>
+    <div class="vibe-cell reveal"><div class="big">4K</div><div class="sm">Filming days for your covers</div></div>
+    <div class="vibe-cell reveal"><div class="big">∞</div><div class="sm">Aircon. Always.</div></div>
+  </div>
+</div>
+
+<!-- ════════ PRICING ════════ -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Pricing · 가격</div>
+      <h2 class="section-title">Simple <span class="stroke">plans.</span></h2>
+      <p class="section-sub">No lock-in contracts, no hidden fees. Your first trial class is on us.</p>
+    </div>
+    <div class="grid-price">
+      <div class="price-card reveal">
+        <h3>Drop-In</h3>
+        <div class="price-amt"><small>RM</small> 35</div>
+        <div class="price-per">per class</div>
+        <ul class="price-feats">
+          <li>Any single class</li>
+          <li>No commitment</li>
+          <li>Pay via cash / TNG / bank</li>
+        </ul>
+        <a class="btn btn-ghost" data-wa="Hi SEOULBEAT! I'd like to drop in for a class. What's on this week?">Drop In via WhatsApp</a>
+      </div>
+      <div class="price-card featured reveal">
+        <div class="price-flag">Best Value</div>
+        <h3>Monthly Unlimited</h3>
+        <div class="price-amt"><small>RM</small> 199</div>
+        <div class="price-per">per month · unlimited classes</div>
+        <ul class="price-feats">
+          <li>All weekly classes included</li>
+          <li>Free Saturday open studio</li>
+          <li>Member filming days</li>
+          <li>Priority showcase spots</li>
+        </ul>
+        <a class="btn btn-wa" data-wa="Hi SEOULBEAT! I want the Monthly Unlimited plan 🔥">Join via WhatsApp</a>
+      </div>
+      <div class="price-card reveal">
+        <h3>8-Class Pack</h3>
+        <div class="price-amt"><small>RM</small> 240</div>
+        <div class="price-per">valid 10 weeks · RM30/class</div>
+        <ul class="price-feats">
+          <li>Any 8 classes, your pace</li>
+          <li>Shareable with a friend</li>
+          <li>Freeze anytime</li>
+        </ul>
+        <a class="btn btn-ghost" data-wa="Hi SEOULBEAT! I'm interested in the 8-Class Pack.">Get Pack via WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CREW ════════ -->
+<section class="crew" id="crew">
+  <div class="blob b1"></div>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">The Crew · 선생님들</div>
+      <h2 class="section-title">Meet your <span class="stroke">teachers.</span></h2>
+      <p class="section-sub">Trained in Seoul studios &amp; KL battle scenes. Strict about technique, generous with hype.</p>
+    </div>
+    <div class="grid-crew">
+      <div class="crew-card reveal">
+        <div class="crew-photo p1">💃</div>
+        <div class="crew-info">
+          <h3>Coach Jin</h3>
+          <div class="crew-role">Head Coach · Girl Group</div>
+          <p>Trained at 1MILLION-style studios in Seoul. Obsessed with clean lines and that final-chorus energy.</p>
+        </div>
+      </div>
+      <div class="crew-card reveal">
+        <div class="crew-photo p2">🕺</div>
+        <div class="crew-info">
+          <h3>Coach Ryu</h3>
+          <div class="crew-role">Boy Group · Power Choreo</div>
+          <p>Ex-cover-crew leader with 50+ stage performances. Brings the hard-hitting SKZ / ATEEZ flavour.</p>
+        </div>
+      </div>
+      <div class="crew-card reveal">
+        <div class="crew-photo p3">✨</div>
+        <div class="crew-info">
+          <h3>Coach Mei</h3>
+          <div class="crew-role">Beginners · Kids</div>
+          <p>Penang-born, endlessly patient, secretly the strictest about basics. Your kids will beg to come back.</p>
+        </div>
+      </div>
+      <div class="crew-card reveal">
+        <div class="crew-photo p4">🎬</div>
+        <div class="crew-info">
+          <h3>Coach Aiman</h3>
+          <div class="crew-role">Hip-Hop · Filming</div>
+          <p>Groove-first foundations coach and the eye behind our 4K cover videos. Battles on weekends.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ LOCATION ════════ -->
+<section id="visit">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Find Us · 오시는 길</div>
+      <h2 class="section-title">In the heart of <span class="stroke">George Town.</span></h2>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-card reveal">
+        <div class="loc-item">
+          <div class="loc-ic">📍</div>
+          <div><h4>Studio</h4><p>Level 2, 88 Lebuh Campbell,<br>George Town, 10100 Penang, Malaysia</p></div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-ic">🕗</div>
+          <div><h4>Hours</h4><p>Mon–Fri 6:00 PM – 10:30 PM<br>Sat–Sun 10:00 AM – 8:00 PM</p></div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-ic">💬</div>
+          <div><h4>WhatsApp</h4><p><a data-wa="Hi SEOULBEAT! I have a question 🙋" style="color:var(--cyan);font-weight:700">+60 12-345 6789 — chat with us →</a></p></div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-ic">🅿️</div>
+          <div><h4>Getting Here</h4><p>5 min from Komtar · street + lot parking nearby · Grab drop-off at the door</p></div>
+        </div>
+      </div>
+      <a class="loc-map reveal" href="https://maps.google.com/?q=Lebuh+Campbell+George+Town+Penang" target="_blank" rel="noopener">
+        <div class="loc-pin">📍</div>
+        <div class="lbl">Open in Google Maps ↗</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FINAL CTA ════════ -->
+<section class="final">
+  <div class="blob b1"></div>
+  <div class="wrap">
+    <h2 class="reveal">Your debut<br><span class="grad">starts here.</span></h2>
+    <div class="kr-line reveal">첫 수업 무료 · FIRST CLASS FREE</div>
+    <p class="reveal">One message. One trial class. Zero pressure.<br>Slide into our WhatsApp and we'll save you a spot this week.</p>
+    <div class="reveal">
+      <a class="btn btn-wa" data-wa="Hi SEOULBEAT! I'd like to book my FREE trial class this week 🙌">
+        <svg class="wa-ic" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.1 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35M12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.82 9.82 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 7 2.9 9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.88-9.9 9.88m8.42-18.29A11.8 11.8 0 0 0 12.04 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.94L.06 24l6.32-1.65a11.9 11.9 0 0 0 5.67 1.44h.01c6.55 0 11.88-5.33 11.88-11.89 0-3.18-1.24-6.16-3.47-8.4"/></svg>
+        Chat on WhatsApp Now
+      </a>
+      <div class="hint">Usually replies within minutes ⚡</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer>
+  <div class="foot-inner">
+    <div class="logo"><span class="dot"></span>SEOUL<em>BEAT</em></div>
+    <div class="foot-social">
+      <a href="#" rel="noopener">Instagram</a>
+      <a href="#" rel="noopener">TikTok</a>
+      <a href="#" rel="noopener">YouTube</a>
+    </div>
+    <div>© 2026 SEOULBEAT Studio · George Town, Penang</div>
+  </div>
+</footer>
+
+<!-- ════════ FLOATING WHATSAPP ════════ -->
+<div class="wa-tip">Free trial? Message us! 👋</div>
+<a class="wa-float" data-wa="Hi SEOULBEAT! I'd like to book a FREE trial class 💃" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.1 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35M12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.82 9.82 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 7 2.9 9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.88-9.9 9.88m8.42-18.29A11.8 11.8 0 0 0 12.04 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.94L.06 24l6.32-1.65a11.9 11.9 0 0 0 5.67 1.44h.01c6.55 0 11.88-5.33 11.88-11.89 0-3.18-1.24-6.16-3.47-8.4"/></svg>
+</a>
+
+<script>
+  /* ═══════════════════════════════════════════════════════
+     ★ 와츠앱 번호는 여기 한 줄만 바꾸면 사이트 전체에 적용됩니다.
+       말레이시아 번호: 국가코드 60 + 0을 뺀 번호 (예: 012-345 6789 → 60123456789)
+  ═══════════════════════════════════════════════════════ */
+  const WHATSAPP_NUMBER = "60123456789";
+
+  document.querySelectorAll("[data-wa]").forEach(el => {
+    const msg = el.getAttribute("data-wa") || "Hi SEOULBEAT!";
+    el.href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg);
+    el.target = "_blank";
+    el.rel = "noopener";
+  });
+
+  // duplicate marquee content for a seamless loop
+  const track = document.getElementById("marqueeTrack");
+  track.innerHTML += track.innerHTML;
+
+  // scroll reveal
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
