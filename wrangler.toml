@@ -1,0 +1,7 @@
+name = "move-k"
+compatibility_date = "2024-09-01"
+pages_build_output_dir = "public"
+
+[[kv_namespaces]]
+binding = "MOVEK_CONTENT"
+id = "e1f64e77fa034cb5a638ab83846018f3"
