@@ -9,20 +9,29 @@
      <title> · og:* · twitter:* · JSON-LD "name" · 그리고 <body>의 .logo 2곳.
      CTA 메시지 속 브랜드명은 맨 아래 <script>의 BRAND 상수 하나로 자동 적용됩니다.
 ──────────────────────────────────────────────────────────────── -->
-<title>MOVE:K — K-Pop Dance Studio · Penang</title>
-<meta name="description" content="MOVE:K — Penang's refined K-Pop dance studio. Mirror-lined floors, pro coaching, idol choreography from the latest comebacks. Your first trial class is free — message us on WhatsApp.">
+<title>MOVE:K — K-Pop Dance Studio in Penang (Tanjung Tokong)</title>
+<meta name="description" content="MOVE:K is a K-Pop dance studio in Tanjung Tokong, Penang — near Gurney Drive. K-Pop, Diet Dance and kids play dance classes with a professional dancer from Korea. Book on WhatsApp.">
+<meta name="keywords" content="MOVE:K, move.k, move k, movek, 무브케이, K-Pop dance Penang, dance class Penang, dance studio Tanjung Tokong, kids dance Penang, K-Pop class Penang, 페낭 댄스학원, 케이팝 댄스">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="MOVE:K Dance Studio">
+
+<!-- 지역 SEO (구글 로컬 검색용) -->
+<meta name="geo.region" content="MY-07">
+<meta name="geo.placename" content="Tanjung Tokong, Penang">
+<meta name="geo.position" content="5.4519065;100.3034368">
+<meta name="ICBM" content="5.4519065, 100.3034368">
 
 <link rel="canonical" href="https://move-k.pages.dev/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MOVE:K">
-<meta property="og:title" content="MOVE:K — K-Pop Dance Studio · Penang">
+<meta property="og:title" content="MOVE:K — K-Pop Dance Studio in Penang (Tanjung Tokong)">
 <meta property="og:description" content="A refined K-Pop dance studio in Tanjung Tokong, Penang. Learn idol choreography from the latest comebacks with pro coaches. First trial class free — message us on WhatsApp.">
 <meta property="og:url" content="https://move-k.pages.dev/">
 <meta property="og:locale" content="en_MY">
 <!-- TODO: 1200×630 커버 이미지를 추가하면 SNS/와츠앱 공유 시 썸네일이 뜹니다:
      <meta property="og:image" content="https://move-k.pages.dev/og-cover.png"> -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="MOVE:K — K-Pop Dance Studio · Penang">
+<meta name="twitter:title" content="MOVE:K — K-Pop Dance Studio in Penang (Tanjung Tokong)">
 <meta name="twitter:description" content="Idol choreography classes in Tanjung Tokong, Penang. First trial class free — message us on WhatsApp.">
 <meta name="theme-color" content="#f5f1e8">
 
@@ -233,6 +242,34 @@
   /* ───────── schedule ───────── */
   .sched{background:var(--bg2)}
   .sched .glow.g1{width:420px;height:420px;background:rgba(205,178,129,.08);top:-100px;right:-120px}
+
+  /* 주간 그리드(요일별 컬러 카드) — 포스터형 시각 시간표 */
+  .sched-week{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:52px}
+  .sday{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);padding:14px 12px;display:flex;flex-direction:column;gap:9px}
+  .sday-name{font-family:var(--font-display);font-weight:600;font-size:19px;color:var(--ink);text-align:center;letter-spacing:.05em;padding-bottom:10px;border-bottom:1px solid var(--line)}
+  .slot{border-radius:11px;padding:12px 11px;display:flex;flex-direction:column;gap:2px;min-height:78px;justify-content:center;border:1px solid transparent;transition:transform .25s var(--ease)}
+  .slot:hover{transform:translateY(-2px)}
+  .slot-time{font-family:var(--font-body);font-size:11.5px;font-weight:700;letter-spacing:.06em;color:var(--gold)}
+  .slot-name{font-family:var(--font-body);font-size:13px;font-weight:600;line-height:1.25;color:var(--ink)}
+  .slot-note{font-family:var(--font-body);font-size:10.5px;color:var(--muted);line-height:1.25;margin-top:1px}
+  .slot.adult{background:#efe9dc;border-color:rgba(34,29,21,.06)}
+  .slot.kids{background:rgba(193,154,85,.15)}
+  .slot.basic{background:rgba(166,124,51,.2)}
+  .slot.adv{background:var(--ink)}
+  .slot.adv .slot-time{color:var(--gold-soft)}
+  .slot.adv .slot-name,.slot.adv .slot-note{color:#f2ede2}
+  .slot.weekend{background:#fff;border:1px solid var(--line-strong)}
+  .sched-legend{display:flex;flex-wrap:wrap;gap:14px 18px;justify-content:center;margin-top:24px;font-family:var(--font-body);font-size:11.5px;color:var(--muted);letter-spacing:.02em}
+  .sched-legend span{display:inline-flex;align-items:center;gap:7px}
+  .sched-legend i{width:13px;height:13px;border-radius:4px;flex:none}
+  .lg-adult{background:#efe9dc;border:1px solid rgba(34,29,21,.1)}
+  .lg-kids{background:rgba(193,154,85,.45)}
+  .lg-basic{background:rgba(166,124,51,.6)}
+  .lg-adv{background:var(--ink)}
+  .lg-weekend{background:#fff;border:1px solid var(--line-strong)}
+  @media(max-width:820px){.sched-week{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:560px){.sched-week{grid-template-columns:1fr 1fr;gap:10px}.sday{padding:12px 10px}.sday-name{font-size:17px}.slot{min-height:70px;padding:10px 9px}.slot-name{font-size:12.5px}}
+
   .sched-table{margin-top:56px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
   .sched-row{
     display:grid;grid-template-columns:1fr 1.7fr 1.4fr 1fr;gap:12px;align-items:center;
@@ -366,7 +403,9 @@
   .crew-role{font-family:var(--font-body);font-size:11.5px;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin:8px 0 14px;font-weight:600}
   .crew-info p{color:var(--muted);font-size:13.5px;line-height:1.7}
   /* 단독 선생님 프로필 (사진 없음) */
-  .coach-solo{max-width:620px;margin:56px auto 0;background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);padding:48px 42px;text-align:center;position:relative}
+  .coach-solo{max-width:620px;margin:48px auto 0;background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);padding:48px 42px;text-align:center;position:relative}
+  #crew{padding-bottom:34px}
+  @media(max-width:600px){#crew{padding-bottom:16px}}
   .coach-from{font-family:var(--font-kr);color:var(--gold);font-size:13px;letter-spacing:.16em;margin-bottom:12px}
   .coach-name{font-family:var(--font-display);font-size:46px;font-weight:600;letter-spacing:.01em;line-height:1}
   .coach-role{font-family:var(--font-body);font-size:11.5px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin:14px 0 28px;font-weight:600}
@@ -390,18 +429,19 @@
   .loc-item p{font-size:15px;line-height:1.65;color:var(--ink)}
   .loc-map{
     border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);
-    aspect-ratio:4/3.4;position:relative;
-    background:
-      radial-gradient(circle at 62% 40%,rgba(166,124,51,.2),transparent 30%),
-      repeating-linear-gradient(0deg,transparent 0 42px,rgba(34,29,21,.05) 42px 43px),
-      repeating-linear-gradient(90deg,transparent 0 42px,rgba(34,29,21,.05) 42px 43px),
-      linear-gradient(150deg,#efe9dd,#e3dccd);
-    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;
+    aspect-ratio:4/3.4;position:relative;background:var(--bg3);
     transition:border-color .3s;
   }
   .loc-map:hover{border-color:var(--line-strong)}
-  .loc-pin{font-family:var(--font-display);font-size:40px;color:var(--gold);filter:drop-shadow(0 0 16px rgba(205,178,129,.5))}
-  .loc-map .lbl{font-family:var(--font-body);font-weight:500;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .loc-map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;filter:grayscale(.15) contrast(1.02)}
+  .loc-maplink{
+    position:absolute;left:14px;bottom:14px;z-index:2;
+    background:rgba(253,251,246,.94);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    color:var(--ink);font-family:var(--font-body);font-weight:600;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+    padding:9px 15px;border-radius:999px;border:1px solid var(--line);box-shadow:0 6px 18px rgba(34,29,21,.14);
+    transition:transform .2s,color .2s;
+  }
+  .loc-maplink:hover{color:var(--gold);transform:translateY(-2px)}
 
   /* ───────── final CTA ───────── */
   .final{text-align:center;overflow:hidden}
@@ -478,9 +518,10 @@
     .hero-ctas{flex-direction:column;width:100%;gap:10px}
     .hero-ctas .btn{width:100%;justify-content:center}
     .hero-ctas .btn-line{width:auto;margin-top:2px;font-size:13px}
-    .hero-stats{gap:26px;margin-top:40px}
-    .hstat .num{font-size:26px}
-    .hstat .lbl{font-size:10px;margin-top:6px}
+    .hero-stats{gap:6px;margin-top:38px;flex-wrap:nowrap;width:100%}   /* 3개를 한 줄에 */
+    .hstat{flex:1 1 0;min-width:0}
+    .hstat .num{font-size:23px}
+    .hstat .lbl{font-size:8.5px;margin-top:5px;letter-spacing:.06em}
 
     .marquee{padding:14px 0}
     .marquee span{font-size:14px;margin:0 16px}
@@ -490,12 +531,17 @@
     .section-sub{font-size:14px;line-height:1.65}
 
     .grid-classes,.grid-price,.grid-crew,.space-grid{margin-top:30px;gap:14px}
-    .class-card{padding:26px 22px}
-    .class-num{margin-bottom:16px;font-size:14px}
-    .class-card h3{font-size:21px}
-    .class-kr{font-size:12.5px;margin-bottom:14px}
-    .class-card p{font-size:13.5px;margin-bottom:18px}
-    .tag{font-size:10.5px;padding:5px 11px}
+    /* 클래스: 모바일에서 2×2 콤팩트 카드 (한눈에) */
+    .grid-classes{grid-template-columns:1fr 1fr;gap:10px;margin-top:26px}
+    .class-card{padding:18px 15px}
+    .class-num{margin-bottom:10px;font-size:12px}
+    .class-card h3{font-size:17px;line-height:1.12}
+    .class-kr{font-size:11px;margin-bottom:11px;letter-spacing:.1em}
+    .class-card p{display:none}          /* 설명은 데스크톱에서만, 모바일은 제목+태그로 심플하게 */
+    .class-tags{gap:6px}
+    .tag{font-size:9.5px;padding:4px 9px;letter-spacing:.04em}
+    /* 가격 카드는 계속 1열 유지 */
+    .grid-price{grid-template-columns:1fr}
 
     .sched-table{margin-top:28px}
     .sched-row{padding:16px 16px}
@@ -567,11 +613,11 @@
   <div class="nav-inner">
     <a href="#top" class="logo">MOVE<span class="colon">:</span>K</a>
     <div class="nav-links">
+      <a href="#crew">Coaches</a>
       <a href="#classes">Classes</a>
       <a href="#schedule">Schedule</a>
       <a href="#pricing">Pricing</a>
       <a href="#space">The Studio</a>
-      <a href="#crew">Coaches</a>
       <a href="#visit">Visit</a>
     </div>
     <a class="btn btn-gold nav-cta" href="https://wa.me/60172029731" data-wa="I'd like to book a free trial class.">
@@ -619,6 +665,28 @@
     <span>K-Pop Choreo</span><span class="dot">✦</span><span>Girl Group</span><span class="dot">✦</span><span>Boy Group</span><span class="dot">✦</span><span>Cover Crew</span><span class="dot">✦</span><span>Kids K-Pop</span><span class="dot">✦</span><span>Hip-Hop</span><span class="dot">✦</span><span>Random Play Dance</span><span class="dot">✦</span>
   </div>
 </div>
+
+<!-- ════════ CREW ════════ -->
+<section id="crew">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow" data-k="cr_eyebrow" data-group="강사" data-label="섹션 라벨">The Coaches · 선생님들</div>
+      <h2 class="section-title" data-kh="cr_title" data-group="강사" data-label="섹션 제목">Meet your <span class="accent">teacher.</span></h2>
+      <p class="section-sub" data-k="cr_sub" data-group="강사" data-label="섹션 설명">Learn straight from a professional dancer trained in Korea.</p>
+    </div>
+    <div class="coach-solo reveal">
+      <div class="coach-from" data-k="cr_from" data-group="강사" data-label="선생님 출신">Hi, I'm your teacher — from Korea 🇰🇷</div>
+      <div class="coach-name" data-k="cr_name" data-group="강사" data-label="선생님 이름">Hye Ryeon</div>
+      <div class="coach-role" data-k="cr_role" data-group="강사" data-label="선생님 직함">Head Coach · Professional Dance Trainer</div>
+      <ul class="coach-creds" data-klist="cr_creds" data-group="강사" data-label="선생님 이력 (한 줄에 하나)">
+        <li>Former MAMAMOO dance team member</li>
+        <li>Choreographer for Wheein &amp; Hwasa</li>
+        <li>Backup dancer for numerous TV performances</li>
+        <li>Extensive experience as a professional dance trainer</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
 <!-- ════════ CLASSES ════════ -->
 <section id="classes">
@@ -670,22 +738,43 @@
       <h2 class="section-title" data-kh="sch_title" data-group="시간표" data-label="섹션 제목">When we <span class="accent">move.</span></h2>
       <p class="section-sub" data-k="sch_sub" data-group="시간표" data-label="섹션 설명">Morning, afternoon and weekend classes — Tuesday to Saturday.</p>
     </div>
-    <div class="sched-table reveal">
-      <div class="sched-row head"><div>Day</div><div>Class</div><div>Time</div><div>Level</div></div>
-      <div class="sched-row"><div class="sched-day" data-k="sch1_day" data-group="시간표" data-label="1행 요일">Tue</div><div class="sched-class"><span data-k="sch1_name" data-group="시간표" data-label="1행 클래스">Diet Dance 1</span><small data-k="sch1_note" data-group="시간표" data-label="1행 메모">Adult fitness dance</small></div><div class="sched-time" data-k="sch1_time" data-group="시간표" data-label="1행 시간">09:00</div><div class="lvl open" data-k="sch1_lvl" data-group="시간표" data-label="1행 레벨">Adult</div></div>
-      <div class="sched-row"><div class="sched-day" data-k="sch2_day" data-group="시간표" data-label="2행 요일">Tue</div><div class="sched-class"><span data-k="sch2_name" data-group="시간표" data-label="2행 클래스">Kids Play Dance 1</span><small data-k="sch2_note" data-group="시간표" data-label="2행 메모">Age 5–7</small></div><div class="sched-time" data-k="sch2_time" data-group="시간표" data-label="2행 시간">15:50</div><div class="lvl beg" data-k="sch2_lvl" data-group="시간표" data-label="2행 레벨">Kids</div></div>
-      <div class="sched-row"><div class="sched-day" data-k="sch3_day" data-group="시간표" data-label="3행 요일">Tue</div><div class="sched-class"><span data-k="sch3_name" data-group="시간표" data-label="3행 클래스">K-Pop 2 (Basic)</span><small data-k="sch3_note" data-group="시간표" data-label="3행 메모">From 10 yrs</small></div><div class="sched-time" data-k="sch3_time" data-group="시간표" data-label="3행 시간">17:00</div><div class="lvl beg" data-k="sch3_lvl" data-group="시간표" data-label="3행 레벨">Basic</div></div>
-      <div class="sched-row"><div class="sched-day" data-k="sch4_day" data-group="시간표" data-label="4행 요일">Wed</div><div class="sched-class"><span data-k="sch4_name" data-group="시간표" data-label="4행 클래스">Diet Dance 2</span><small data-k="sch4_note" data-group="시간표" data-label="4행 메모">Adult fitness dance</small></div><div class="sched-time" data-k="sch4_time" data-group="시간표" data-label="4행 시간">09:00</div><div class="lvl open" data-k="sch4_lvl" data-group="시간표" data-label="4행 레벨">Adult</div></div>
-      <div class="sched-row"><div class="sched-day" data-k="sch5_day" data-group="시간표" data-label="5행 요일">Wed</div><div class="sched-class"><span data-k="sch5_name" data-group="시간표" data-label="5행 클래스">K-Pop 1 (Basic)</span><small data-k="sch5_note" data-group="시간표" data-label="5행 메모">From 7 yrs</small></div><div class="sched-time" data-k="sch5_time" data-group="시간표" data-label="5행 시간">15:50</div><div class="lvl beg" data-k="sch5_lvl" data-group="시간표" data-label="5행 레벨">Basic</div></div>
-      <div class="sched-row"><div class="sched-day" data-k="sch6_day" data-group="시간표" data-label="6행 요일">Wed</div><div class="sched-class"><span data-k="sch6_name" data-group="시간표" data-label="6행 클래스">K-Pop (Experienced)</span><small data-k="sch6_note" data-group="시간표" data-label="6행 메모">Advanced · 60–70 min</small></div><div class="sched-time" data-k="sch6_time" data-group="시간표" data-label="6행 시간">17:00</div><div class="lvl adv" data-k="sch6_lvl" data-group="시간표" data-label="6행 레벨">Advanced</div></div>
-      <div class="sched-row"><div class="sched-day" data-k="sch7_day" data-group="시간표" data-label="7행 요일">Thu</div><div class="sched-class"><span data-k="sch7_name" data-group="시간표" data-label="7행 클래스">Diet Dance 1</span><small data-k="sch7_note" data-group="시간표" data-label="7행 메모">Adult fitness dance</small></div><div class="sched-time" data-k="sch7_time" data-group="시간표" data-label="7행 시간">09:00</div><div class="lvl open" data-k="sch7_lvl" data-group="시간표" data-label="7행 레벨">Adult</div></div>
-      <div class="sched-row"><div class="sched-day" data-k="sch8_day" data-group="시간표" data-label="8행 요일">Thu</div><div class="sched-class"><span data-k="sch8_name" data-group="시간표" data-label="8행 클래스">Kids Play Dance 1</span><small data-k="sch8_note" data-group="시간표" data-label="8행 메모">Age 5–7</small></div><div class="sched-time" data-k="sch8_time" data-group="시간표" data-label="8행 시간">15:50</div><div class="lvl beg" data-k="sch8_lvl" data-group="시간표" data-label="8행 레벨">Kids</div></div>
-      <div class="sched-row"><div class="sched-day" data-k="sch9_day" data-group="시간표" data-label="9행 요일">Thu</div><div class="sched-class"><span data-k="sch9_name" data-group="시간표" data-label="9행 클래스">K-Pop 2 (Basic)</span><small data-k="sch9_note" data-group="시간표" data-label="9행 메모">From 10 yrs</small></div><div class="sched-time" data-k="sch9_time" data-group="시간표" data-label="9행 시간">17:00</div><div class="lvl beg" data-k="sch9_lvl" data-group="시간표" data-label="9행 레벨">Basic</div></div>
-      <div class="sched-row"><div class="sched-day" data-k="sch10_day" data-group="시간표" data-label="10행 요일">Fri</div><div class="sched-class"><span data-k="sch10_name" data-group="시간표" data-label="10행 클래스">Diet Dance 2</span><small data-k="sch10_note" data-group="시간표" data-label="10행 메모">Adult fitness dance</small></div><div class="sched-time" data-k="sch10_time" data-group="시간표" data-label="10행 시간">09:00</div><div class="lvl open" data-k="sch10_lvl" data-group="시간표" data-label="10행 레벨">Adult</div></div>
-      <div class="sched-row"><div class="sched-day" data-k="sch11_day" data-group="시간표" data-label="11행 요일">Fri</div><div class="sched-class"><span data-k="sch11_name" data-group="시간표" data-label="11행 클래스">K-Pop 1 (Basic)</span><small data-k="sch11_note" data-group="시간표" data-label="11행 메모">From 7 yrs</small></div><div class="sched-time" data-k="sch11_time" data-group="시간표" data-label="11행 시간">15:50</div><div class="lvl beg" data-k="sch11_lvl" data-group="시간표" data-label="11행 레벨">Basic</div></div>
-      <div class="sched-row"><div class="sched-day" data-k="sch12_day" data-group="시간표" data-label="12행 요일">Fri</div><div class="sched-class"><span data-k="sch12_name" data-group="시간표" data-label="12행 클래스">K-Pop (Experienced)</span><small data-k="sch12_note" data-group="시간표" data-label="12행 메모">Advanced · 60–70 min</small></div><div class="sched-time" data-k="sch12_time" data-group="시간표" data-label="12행 시간">17:00</div><div class="lvl adv" data-k="sch12_lvl" data-group="시간표" data-label="12행 레벨">Advanced</div></div>
-      <div class="sched-row"><div class="sched-day" data-k="sch13_day" data-group="시간표" data-label="13행 요일">Sat</div><div class="sched-class"><span data-k="sch13_name" data-group="시간표" data-label="13행 클래스">Weekend Class</span><small data-k="sch13_note" data-group="시간표" data-label="13행 메모">All ages</small></div><div class="sched-time" data-k="sch13_time" data-group="시간표" data-label="13행 시간">14:00</div><div class="lvl open" data-k="sch13_lvl" data-group="시간표" data-label="13행 레벨">All</div></div>
-      <div class="sched-row"><div class="sched-day" data-k="sch14_day" data-group="시간표" data-label="14행 요일">Sat</div><div class="sched-class"><span data-k="sch14_name" data-group="시간표" data-label="14행 클래스">Weekend Class</span><small data-k="sch14_note" data-group="시간표" data-label="14행 메모">All ages</small></div><div class="sched-time" data-k="sch14_time" data-group="시간표" data-label="14행 시간">16:00</div><div class="lvl open" data-k="sch14_lvl" data-group="시간표" data-label="14행 레벨">All</div></div>
+    <div class="sched-week reveal">
+      <div class="sday">
+        <div class="sday-name" data-k="sch1_day" data-group="시간표" data-label="화요일 헤더">Tue</div>
+        <div class="slot adult"><span class="slot-time" data-k="sch1_time" data-group="시간표" data-label="화 09:00 시간">09:00</span><span class="slot-name" data-k="sch1_name" data-group="시간표" data-label="화 09:00 클래스">Diet Dance 1</span><span class="slot-note" data-k="sch1_note" data-group="시간표" data-label="화 09:00 메모">Adult fitness dance</span></div>
+        <div class="slot kids"><span class="slot-time" data-k="sch2_time" data-group="시간표" data-label="화 15:50 시간">15:50</span><span class="slot-name" data-k="sch2_name" data-group="시간표" data-label="화 15:50 클래스">Kids Play Dance 1</span><span class="slot-note" data-k="sch2_note" data-group="시간표" data-label="화 15:50 메모">Age 5–7</span></div>
+        <div class="slot basic"><span class="slot-time" data-k="sch3_time" data-group="시간표" data-label="화 17:00 시간">17:00</span><span class="slot-name" data-k="sch3_name" data-group="시간표" data-label="화 17:00 클래스">K-Pop 2 (Basic)</span><span class="slot-note" data-k="sch3_note" data-group="시간표" data-label="화 17:00 메모">From 10 yrs</span></div>
+      </div>
+      <div class="sday">
+        <div class="sday-name" data-k="sch4_day" data-group="시간표" data-label="수요일 헤더">Wed</div>
+        <div class="slot adult"><span class="slot-time" data-k="sch4_time" data-group="시간표" data-label="수 09:00 시간">09:00</span><span class="slot-name" data-k="sch4_name" data-group="시간표" data-label="수 09:00 클래스">Diet Dance 2</span><span class="slot-note" data-k="sch4_note" data-group="시간표" data-label="수 09:00 메모">Adult fitness dance</span></div>
+        <div class="slot basic"><span class="slot-time" data-k="sch5_time" data-group="시간표" data-label="수 15:50 시간">15:50</span><span class="slot-name" data-k="sch5_name" data-group="시간표" data-label="수 15:50 클래스">K-Pop 1 (Basic)</span><span class="slot-note" data-k="sch5_note" data-group="시간표" data-label="수 15:50 메모">From 7 yrs</span></div>
+        <div class="slot adv"><span class="slot-time" data-k="sch6_time" data-group="시간표" data-label="수 17:00 시간">17:00</span><span class="slot-name" data-k="sch6_name" data-group="시간표" data-label="수 17:00 클래스">K-Pop (Experienced)</span><span class="slot-note" data-k="sch6_note" data-group="시간표" data-label="수 17:00 메모">Advanced · 60–70 min</span></div>
+      </div>
+      <div class="sday">
+        <div class="sday-name" data-k="sch7_day" data-group="시간표" data-label="목요일 헤더">Thu</div>
+        <div class="slot adult"><span class="slot-time" data-k="sch7_time" data-group="시간표" data-label="목 09:00 시간">09:00</span><span class="slot-name" data-k="sch7_name" data-group="시간표" data-label="목 09:00 클래스">Diet Dance 1</span><span class="slot-note" data-k="sch7_note" data-group="시간표" data-label="목 09:00 메모">Adult fitness dance</span></div>
+        <div class="slot kids"><span class="slot-time" data-k="sch8_time" data-group="시간표" data-label="목 15:50 시간">15:50</span><span class="slot-name" data-k="sch8_name" data-group="시간표" data-label="목 15:50 클래스">Kids Play Dance 1</span><span class="slot-note" data-k="sch8_note" data-group="시간표" data-label="목 15:50 메모">Age 5–7</span></div>
+        <div class="slot basic"><span class="slot-time" data-k="sch9_time" data-group="시간표" data-label="목 17:00 시간">17:00</span><span class="slot-name" data-k="sch9_name" data-group="시간표" data-label="목 17:00 클래스">K-Pop 2 (Basic)</span><span class="slot-note" data-k="sch9_note" data-group="시간표" data-label="목 17:00 메모">From 10 yrs</span></div>
+      </div>
+      <div class="sday">
+        <div class="sday-name" data-k="sch10_day" data-group="시간표" data-label="금요일 헤더">Fri</div>
+        <div class="slot adult"><span class="slot-time" data-k="sch10_time" data-group="시간표" data-label="금 09:00 시간">09:00</span><span class="slot-name" data-k="sch10_name" data-group="시간표" data-label="금 09:00 클래스">Diet Dance 2</span><span class="slot-note" data-k="sch10_note" data-group="시간표" data-label="금 09:00 메모">Adult fitness dance</span></div>
+        <div class="slot basic"><span class="slot-time" data-k="sch11_time" data-group="시간표" data-label="금 15:50 시간">15:50</span><span class="slot-name" data-k="sch11_name" data-group="시간표" data-label="금 15:50 클래스">K-Pop 1 (Basic)</span><span class="slot-note" data-k="sch11_note" data-group="시간표" data-label="금 15:50 메모">From 7 yrs</span></div>
+        <div class="slot adv"><span class="slot-time" data-k="sch12_time" data-group="시간표" data-label="금 17:00 시간">17:00</span><span class="slot-name" data-k="sch12_name" data-group="시간표" data-label="금 17:00 클래스">K-Pop (Experienced)</span><span class="slot-note" data-k="sch12_note" data-group="시간표" data-label="금 17:00 메모">Advanced · 60–70 min</span></div>
+      </div>
+      <div class="sday">
+        <div class="sday-name" data-k="sch13_day" data-group="시간표" data-label="토요일 헤더">Sat</div>
+        <div class="slot weekend"><span class="slot-time" data-k="sch13_time" data-group="시간표" data-label="토 14:00 시간">14:00</span><span class="slot-name" data-k="sch13_name" data-group="시간표" data-label="토 14:00 클래스">Weekend Class</span><span class="slot-note" data-k="sch13_note" data-group="시간표" data-label="토 14:00 메모">All ages</span></div>
+        <div class="slot weekend"><span class="slot-time" data-k="sch14_time" data-group="시간표" data-label="토 16:00 시간">16:00</span><span class="slot-name" data-k="sch14_name" data-group="시간표" data-label="토 16:00 클래스">Weekend Class</span><span class="slot-note" data-k="sch14_note" data-group="시간표" data-label="토 16:00 메모">All ages</span></div>
+      </div>
+    </div>
+    <div class="sched-legend reveal">
+      <span><i class="lg-adult"></i>Diet Dance (Adult)</span>
+      <span><i class="lg-kids"></i>Kids Play Dance</span>
+      <span><i class="lg-basic"></i>K-Pop (Basic)</span>
+      <span><i class="lg-adv"></i>K-Pop (Experienced)</span>
+      <span><i class="lg-weekend"></i>Weekend</span>
     </div>
   </div>
 </section>
@@ -777,28 +866,6 @@
   </div>
 </section>
 
-<!-- ════════ CREW ════════ -->
-<section id="crew">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow" data-k="cr_eyebrow" data-group="강사" data-label="섹션 라벨">The Coaches · 선생님들</div>
-      <h2 class="section-title" data-kh="cr_title" data-group="강사" data-label="섹션 제목">Meet your <span class="accent">teacher.</span></h2>
-      <p class="section-sub" data-k="cr_sub" data-group="강사" data-label="섹션 설명">Learn straight from a professional dancer trained in Korea.</p>
-    </div>
-    <div class="coach-solo reveal">
-      <div class="coach-from" data-k="cr_from" data-group="강사" data-label="선생님 출신">Hi, I'm your teacher — from Korea 🇰🇷</div>
-      <div class="coach-name" data-k="cr_name" data-group="강사" data-label="선생님 이름">Hye Ryeon</div>
-      <div class="coach-role" data-k="cr_role" data-group="강사" data-label="선생님 직함">Head Coach · Professional Dance Trainer</div>
-      <ul class="coach-creds" data-klist="cr_creds" data-group="강사" data-label="선생님 이력 (한 줄에 하나)">
-        <li>Former MAMAMOO dance team member</li>
-        <li>Choreographer for Wheein &amp; Hwasa</li>
-        <li>Backup dancer for numerous TV performances</li>
-        <li>Extensive experience as a professional dance trainer</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
 <!-- ════════ LOCATION ════════ -->
 <section class="sched" id="visit">
   <div class="wrap">
@@ -810,7 +877,7 @@
       <div class="loc-card reveal">
         <div class="loc-item">
           <div class="loc-ic" aria-hidden="true">◈</div>
-          <div><h4 data-k="loc_addr_h" data-group="오시는 길" data-label="주소 제목">Studio</h4><p data-kh="loc_addr" data-group="오시는 길" data-label="주소">98-3, Jalan Fettes, Prima Tanjung Business Centre,<br>11200 Tanjung Tokong, Penang, Malaysia</p></div>
+          <div><h4 data-k="loc_addr_h" data-group="오시는 길" data-label="주소 제목">Studio</h4><p data-kh="loc_addr" data-group="오시는 길" data-label="주소">98-02-01, Prima Tanjung, Tanjung Tokong,<br>10470 Penang, Malaysia</p></div>
         </div>
         <div class="loc-item">
           <div class="loc-ic" aria-hidden="true">◷</div>
@@ -825,10 +892,10 @@
           <div><h4 data-k="loc_get_h" data-group="오시는 길" data-label="오는법 제목">Getting Here</h4><p data-k="loc_get" data-group="오시는 길" data-label="오는법">Near Gurney Drive &amp; Island Plaza · lot + street parking nearby · Grab drop-off at the door</p></div>
         </div>
       </div>
-      <a class="loc-map reveal" href="https://maps.google.com/?q=Prima+Tanjung+Business+Centre+Jalan+Fettes+Tanjung+Tokong+Penang" target="_blank" rel="noopener">
-        <div class="loc-pin" aria-hidden="true">◈</div>
-        <div class="lbl">Open in Google Maps ↗</div>
-      </a>
+      <div class="loc-map reveal">
+        <iframe title="MOVE:K on Google Maps" src="https://maps.google.com/maps?q=Move:K%20dance%20studio%2C%20Prima%20Tanjung%2C%20Tanjung%20Tokong%2C%20Penang&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <a class="loc-maplink" href="https://www.google.com/maps/place/Move:K/@5.4519065,100.3034368,17z/data=!4m6!3m5!1s0x304ac3110d3d2a4f:0x2a66af3a477e6009!8m2!3d5.4519065!4d100.3034368" target="_blank" rel="noopener">Open in Google Maps ↗</a>
+      </div>
     </div>
   </div>
 </section>
@@ -877,27 +944,38 @@
 </a>
 
 <!-- ════════ LOCAL BUSINESS STRUCTURED DATA (구글 로컬 검색용) ════════ -->
-<!-- TODO: 주소·전화·영업시간이 확정되면 실제 값으로 교체하세요 -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "MOVE:K — K-Pop Dance Studio",
-  "description": "A refined K-Pop dance studio in Tanjung Tokong, Penang. Adult Diet Dance & K-Pop classes and kids play dance with a professional dancer from Korea.",
+  "@type": ["LocalBusiness", "DanceGroup"],
+  "@id": "https://move-k.pages.dev/#studio",
+  "name": "MOVE:K",
+  "alternateName": ["MOVE:K Dance Studio", "Move K", "move.k", "movek", "무브케이"],
+  "description": "K-Pop dance studio in Tanjung Tokong, Penang. Adult Diet Dance & K-Pop classes and kids play dance with a professional dancer from Korea.",
   "url": "https://move-k.pages.dev/",
   "telephone": "+60172029731",
-  "image": "https://move-k.pages.dev/og-cover.png",
   "priceRange": "RM40–RM400",
+  "currenciesAccepted": "MYR",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "98-3, Jalan Fettes, Prima Tanjung Business Centre",
+    "streetAddress": "98-02-01, Prima Tanjung",
     "addressLocality": "Tanjung Tokong",
-    "postalCode": "11200",
+    "postalCode": "10470",
     "addressRegion": "Penang",
     "addressCountry": "MY"
   },
-  "areaServed": "Penang, Malaysia",
-  "openingHours": ["Tu-Fr 09:00-18:00", "Sa 14:00-17:00"]
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 5.4519065,
+    "longitude": 100.3034368
+  },
+  "hasMap": "https://www.google.com/maps/place/Move:K/@5.4519065,100.3034368,17z/data=!4m6!3m5!1s0x304ac3110d3d2a4f:0x2a66af3a477e6009!8m2!3d5.4519065!4d100.3034368",
+  "areaServed": ["Tanjung Tokong", "George Town", "Gurney", "Penang"],
+  "sameAs": ["https://instagram.com/move.k_dance"],
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "18:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "14:00", "closes": "17:00" }
+  ]
 }
 </script>
 
