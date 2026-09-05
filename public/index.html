@@ -61,16 +61,18 @@
     --ease:cubic-bezier(.22,.61,.36,1);
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth;scroll-padding-top:76px;overflow-x:clip}
+  /* 헤더는 position:sticky(흐름 요소)라 body의 overflow-x:clip 에 잘리지 않음 →
+     좌우 스크롤은 body에서 차단하되 헤더는 정상 표시. html(루트/스크롤 요소)은 건드리지 않아
+     iOS 인앱 브라우저 고정헤더 버그도 피함. */
+  html{scroll-behavior:smooth;scroll-padding-top:76px}
   body{
     background:var(--bg);
     color:var(--ink);
     font-family:var(--font-body);
+    max-width:100%;
     overflow-x:clip;
     -webkit-font-smoothing:antialiased;
     line-height:1.6;
-    width:100%;
-    position:relative;
   }
   ::selection{background:var(--gold);color:#1a1611}
 
@@ -142,11 +144,15 @@
   .wa-ic{width:18px;height:18px;flex:none;fill:currentColor}
 
   /* ───────── nav ───────── */
+  /* ⚠️ backdrop-filter(블러)는 iOS Safari에서 고정 헤더가 초기에 안 그려지는 버그가 있어
+     의도적으로 사용하지 않음. 불투명 배경으로 어떤 브라우저에서도 확실히 렌더되게 함. */
+  /* position:fixed 는 iOS 인앱 브라우저(구글맵·인스타·페북 등)에서 헤더가 툴바 뒤로 숨는
+     버그가 있어 position:sticky 사용 — 흐름에 남아 어떤 인앱 브라우저에서도 확실히 보임. */
   nav{
-    position:fixed;top:0;left:0;right:0;z-index:50;
-    backdrop-filter:blur(20px) saturate(1.1);-webkit-backdrop-filter:blur(20px) saturate(1.1);
-    background:rgba(250,247,240,.78);
+    position:sticky;top:0;z-index:50;
+    background:#faf7f0;
     border-bottom:1px solid var(--line);
+    box-shadow:0 2px 16px rgba(34,29,21,.07);
   }
   .nav-inner{
     max-width:1180px;margin:0 auto;padding:16px 24px;
@@ -161,18 +167,21 @@
   .nav-links{display:flex;gap:34px;font-size:13.5px;font-weight:400;color:var(--muted);letter-spacing:.02em}
   .nav-links a{transition:color .25s;position:relative}
   .nav-links a:hover{color:var(--ink)}
-  .nav-cta{padding:11px 22px;font-size:12.5px}
+  .nav-cta{padding:11px 22px;font-size:12.5px;white-space:nowrap}
   .nav-right{display:flex;align-items:center;gap:14px}
   .lang-switch{display:inline-flex;align-items:center;gap:2px;background:rgba(34,29,21,.05);border:1px solid var(--line);border-radius:999px;padding:3px}
   .lang-switch button{font-family:var(--font-body);font-size:12px;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;padding:5px 10px;border-radius:999px;line-height:1;transition:background .2s,color .2s}
   .lang-switch button:hover{color:var(--ink)}
   .lang-switch button.active{background:var(--ink);color:#f5f1e8}
+  .ig-link{display:inline-flex;align-items:center;justify-content:center;color:var(--muted);transition:color .2s,transform .2s}
+  .ig-link:hover{color:var(--gold);transform:translateY(-1px)}
+  .ig-link svg{width:22px;height:22px;fill:currentColor;display:block}
   @media(max-width:860px){.nav-links{display:none}}
 
   /* ───────── hero ───────── */
   .hero{
-    min-height:100svh;display:flex;align-items:center;
-    padding:150px 24px 80px;overflow:hidden;text-align:center;
+    min-height:calc(100svh - 64px);display:flex;align-items:center;
+    padding:64px 24px 80px;overflow:hidden;text-align:center;
   }
   .hero .glow.g1{width:640px;height:640px;background:rgba(205,178,129,.22);top:-160px;left:50%;transform:translateX(-50%)}
   .hero .glow.g2{width:420px;height:420px;background:rgba(205,178,129,.10);bottom:-120px;left:20%}
@@ -513,11 +522,12 @@
     .logo{font-size:18px;letter-spacing:.08em}
     .nav-cta{padding:9px 14px;font-size:11px}
     .nav-cta .wa-ic{display:none}          /* 좁은 화면에선 아이콘 빼고 텍스트만 → 넘침 방지 */
-    .nav-right{gap:8px}
+    .nav-right{gap:7px}
+    .ig-link svg{width:19px;height:19px}
     .lang-switch{padding:2px}
     .lang-switch button{padding:4px 7px;font-size:11px}
 
-    .hero{padding:100px 22px 52px;min-height:auto}
+    .hero{padding:40px 22px 52px;min-height:auto}
     .hero-eyebrow{font-size:9.5px;letter-spacing:.24em;margin-bottom:18px;flex-wrap:wrap;justify-content:center}
     .hero-eyebrow::before,.hero-eyebrow::after{width:14px}
     .wordmark{font-size:clamp(50px,15.5vw,68px);letter-spacing:.03em}
@@ -629,6 +639,9 @@
       <a href="#visit" data-k="nav_visit" data-group="메뉴" data-label="메뉴: 오시는길">Visit</a>
     </div>
     <div class="nav-right">
+      <a class="ig-link" href="https://instagram.com/move.k_dance" target="_blank" rel="noopener noreferrer" aria-label="MOVE:K Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2m0 1.44c-3.14 0-3.51.01-4.75.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.19-1.39-.32-1.71-.17-.43-.37-.74-.69-1.06-.32-.32-.63-.52-1.06-.69-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.75-.07M12 6.87A5.13 5.13 0 1 0 12 17.13 5.13 5.13 0 0 0 12 6.87m0 8.46A3.33 3.33 0 1 1 12 8.67a3.33 3.33 0 0 1 0 6.66m5.34-8.68a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4"/></svg>
+      </a>
       <div class="lang-switch" role="group" aria-label="Language">
         <button type="button" data-lang="en">EN</button>
         <button type="button" data-lang="ko">한</button>
