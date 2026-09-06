@@ -61,19 +61,24 @@
     --ease:cubic-bezier(.22,.61,.36,1);
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  /* 헤더는 position:sticky(흐름 요소)라 body의 overflow-x:clip 에 잘리지 않음 →
-     좌우 스크롤은 body에서 차단하되 헤더는 정상 표시. html(루트/스크롤 요소)은 건드리지 않아
-     iOS 인앱 브라우저 고정헤더 버그도 피함. */
+  /* 가로 스크롤 차단은 .app 래퍼에서만 한다(아래 참고). html/body엔 overflow clip 금지:
+     - html overflow-x:clip → 세로 스크롤까지 막힘(버그)
+     - 헤더가 clip 조상 안에 들어가면 sticky가 깨짐
+     그래서 헤더(nav)는 .app 밖(body 직계)에 두고, 나머지 콘텐츠만 .app{overflow-x:clip}으로 감싼다. */
   html{scroll-behavior:smooth;scroll-padding-top:76px}
   body{
     background:var(--bg);
     color:var(--ink);
     font-family:var(--font-body);
     max-width:100%;
-    overflow-x:clip;
     -webkit-font-smoothing:antialiased;
     line-height:1.6;
   }
+  /* 히어로~푸터 래퍼: 가로 넘침(마퀴·글로우 등) 차단.
+     ※overflow-x:clip 은 iOS 16 미만 등 구형 WebKit에서 미지원 → 무시되므로
+       모든 버전에서 동작하는 overflow-x:hidden 사용. (헤더는 래퍼 밖이라 sticky 영향 없음,
+       overflow-y는 auto로 계산돼 세로 스크롤은 정상.) */
+  .app{overflow-x:hidden}
   ::selection{background:var(--gold);color:#1a1611}
 
   .sr-svg{position:absolute;width:0;height:0;overflow:hidden}
@@ -504,6 +509,10 @@
 
   /* ───────── mobile refinements (다수가 모바일로 봄 — 콤팩트하게) ───────── */
   @media(max-width:600px){
+    /* 모바일: 화면 밖으로 삐져나갈 수 있는 장식 글로우 제거(좌우 스크롤 원천 차단).
+       (배경 골드 웜톤은 아래 body 그라디언트가 대신함) */
+    .glow{display:none!important}
+    .hero{overflow:hidden}
     /* 화이트 톤에 은은한 골드 웜 앰비언스 (상단 웜 헤일로) */
     body{
       background:
@@ -654,6 +663,9 @@
     </div>
   </div>
 </nav>
+
+<!-- 헤더(sticky) 아래 모든 콘텐츠를 감싸 가로 넘침만 차단(세로 스크롤·sticky 영향 없음) -->
+<div class="app">
 
 <!-- ════════ HERO ════════ -->
 <header class="hero" id="top">
@@ -965,7 +977,9 @@
   </div>
 </footer>
 
-<!-- ════════ FLOATING WHATSAPP ════════ -->
+</div><!-- /.app (가로 넘침 차단 래퍼 끝) -->
+
+<!-- ════════ FLOATING WHATSAPP (fixed → 래퍼 밖에 둬야 안 잘림) ════════ -->
 <a class="wa-tip" href="https://wa.me/60172029731" data-wa="I'd like to book a free trial class.">Free trial? Message us 👋</a>
 <a class="wa-float" href="https://wa.me/60172029731" data-wa="I'd like to book a free trial class." aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>
